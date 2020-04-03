@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class BaseHero 
 {
+
+    //hero Status
     public string name;
 
     public float baseHP;

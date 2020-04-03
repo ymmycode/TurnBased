@@ -5,6 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class BaseEnemy
 {
+
+    //Enemy Status
+
     public string name;
 
     public enum Type
