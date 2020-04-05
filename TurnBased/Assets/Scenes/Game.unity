@@ -121,6 +121,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &105347828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 105347830}
+  - component: {fileID: 105347829}
+  m_Layer: 0
+  m_Name: Battle Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &105347829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105347828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c269fd950ffdbd4c92e190e0002479b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleStates: 0
+  performList: []
+  heroesInBattle: []
+  enemyInBattle: []
+--- !u!4 &105347830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105347828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &392949563
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +256,7 @@ GameObject:
   - component: {fileID: 415323355}
   m_Layer: 0
   m_Name: Enemies
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -606,7 +653,7 @@ GameObject:
   - component: {fileID: 758378311}
   m_Layer: 0
   m_Name: Hero
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -728,7 +775,7 @@ GameObject:
   - component: {fileID: 907919415}
   m_Layer: 0
   m_Name: Enemy (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -760,18 +807,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43aaf4bedfaaf034f88088bbd4d48745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseEnemy:
-    name: Netcrux
-    enemyType: 1
-    rarity: 2
-    baseHP: 40
-    currentHP: 40
-    baseMP: 30
-    currentMP: 30
-    baseATK: 10
-    currentATK: 10
-    baseDEF: 5
-    currentDEF: 5
+  enemy:
+    name: 
+    enemyType: 0
+    rarity: 0
+    baseHP: 0
+    currentHP: 0
+    baseMP: 0
+    currentMP: 0
+    baseATK: 0
+    currentATK: 0
+    baseDEF: 0
+    currentDEF: 0
+  currentState: 0
 --- !u!114 &944803782 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3075253353275577106, guid: 586e81df0447ed5408a53cd450882446,
@@ -954,7 +1002,7 @@ GameObject:
   - component: {fileID: 1113133833}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -986,18 +1034,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43aaf4bedfaaf034f88088bbd4d48745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseEnemy:
-    name: Shortcux
+  enemy:
+    name: 
     enemyType: 0
     rarity: 0
-    baseHP: 30
-    currentHP: 30
-    baseMP: 10
-    currentMP: 10
-    baseATK: 5
-    currentATK: 5
-    baseDEF: 5
-    currentDEF: 5
+    baseHP: 0
+    currentHP: 0
+    baseMP: 0
+    currentMP: 0
+    baseATK: 0
+    currentATK: 0
+    baseDEF: 0
+    currentDEF: 0
+  currentState: 0
 --- !u!1 &1169790657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,7 +1136,7 @@ GameObject:
   - component: {fileID: 1182666332}
   m_Layer: 0
   m_Name: Hero (1)
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2445,7 +2494,7 @@ GameObject:
   - component: {fileID: 2143836210}
   m_Layer: 0
   m_Name: Heroes
-  m_TagString: Hero
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -5,15 +5,15 @@ using UnityEngine;
 public class EnemyStateMachine : MonoBehaviour
 {
 
-    public BaseEnemy baseEnemy;
+    BattleStateMachine BSM;
+    public BaseEnemy enemy;
 
     //Enemy state
     public enum TurnState
     {
         PROCESSING,
-        ADDTOLIST,
+        CHOOSEACT,
         WAITING,
-        SELECTION,
         ACTION,
         DEAD
     }
@@ -24,16 +24,27 @@ public class EnemyStateMachine : MonoBehaviour
     float currentCooldown = 0f;
     float maxCooldown = 5f;
 
+    //this gameobject position
+    Vector3 startPosition;
+
+    //action logic
+    bool actionStarted = false;
+    GameObject heroToAttack;
+    float animationSpeed = 5f;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentState = TurnState.PROCESSING;
+        BSM = GameObject.Find("Battle Manager").GetComponent<BattleStateMachine>();
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
         switch (currentState)
         {
             case (TurnState.PROCESSING):
@@ -41,20 +52,17 @@ public class EnemyStateMachine : MonoBehaviour
 
                 break;
 
-            case (TurnState.ADDTOLIST):
-
+            case (TurnState.CHOOSEACT):
+                ChooseAction();
+                currentState = TurnState.WAITING;
                 break;
 
             case (TurnState.WAITING):
-
-                break;
-
-            case (TurnState.SELECTION):
-
+                //idle
                 break;
 
             case (TurnState.ACTION):
-
+                StartCoroutine(TimeForAction());
                 break;
 
             case (TurnState.DEAD):
@@ -70,7 +78,58 @@ public class EnemyStateMachine : MonoBehaviour
 
         if (currentCooldown >= maxCooldown)
         {
-            currentState = TurnState.ADDTOLIST;
+            currentState = TurnState.CHOOSEACT;
         }
+    }
+
+    void ChooseAction()
+    {
+        HandleTurn myAttack = new HandleTurn();
+        myAttack.attacker = enemy.name;
+        myAttack.attacksGameObject = this.gameObject;
+        myAttack.attackersTarget = BSM.heroesInBattle[Random.Range(0, BSM.heroesInBattle.Count)];
+        BSM.CollectActionInformation(myAttack);
+    }
+
+    IEnumerator TimeForAction()
+    {
+        if (actionStarted)
+        {
+            yield break;
+        }
+
+        actionStarted = true;
+
+        //enemy attack animation start
+        Vector3 heroPosition = new Vector3(
+            heroToAttack.transform.position.x - 1.5f,
+            heroToAttack.transform.position.y,
+            heroToAttack.transform.position.z
+            );
+        while (MoveTowardsEnemy(heroPosition))
+        {
+            yield return null;
+        }
+
+        //wait
+        //attack
+        //enemy init postiion animation start
+        //remove this performfrom BSM list
+        //rest BSM to wait
+
+        actionStarted = false;
+        //reset enemy state
+        currentCooldown = 0f;
+        currentState = TurnState.PROCESSING;
+
+    }
+
+    bool MoveTowardsEnemy(Vector3 target)
+    {
+        return target != 
+            (transform.position = 
+                Vector3.MoveTowards(transform.position, 
+                    target, 
+                    animationSpeed * Time.deltaTime ));
     }
 }

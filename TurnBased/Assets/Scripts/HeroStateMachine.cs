@@ -37,12 +37,11 @@ public class HeroStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
         switch (currentState)
         {
             case (TurnState.PROCESSING) :
                 UpdateProgressBar();
-                
                 break;
 
             case (TurnState.ADDTOLIST):
