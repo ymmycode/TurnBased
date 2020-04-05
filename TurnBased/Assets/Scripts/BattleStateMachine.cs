@@ -44,6 +44,22 @@ public class BattleStateMachine : MonoBehaviour
                 break;
 
             case (PerformAction.TAKEACTION):
+                //get attacker and the name of the attacker
+                GameObject performer = performList[0].attacksGameObject;//target list
+
+                if (performList[0].type == "Enemy")//who is giong to this animation
+                {
+                    EnemyStateMachine ESM = performer.GetComponent<EnemyStateMachine>();
+                    ESM.heroToAttack = performList[0].attackersTarget;
+                    ESM.currentState = EnemyStateMachine.TurnState.ACTION;
+                }
+                
+                if (performList[0].type == "Hero")
+                {
+
+                }
+
+                battleStates = PerformAction.PERFORMACTION;
 
                 break;
 

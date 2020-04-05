@@ -29,8 +29,8 @@ public class EnemyStateMachine : MonoBehaviour
 
     //action logic
     bool actionStarted = false;
-    GameObject heroToAttack;
-    float animationSpeed = 5f;
+    public GameObject heroToAttack;
+    float animationSpeed = 10f;
 
 
     // Start is called before the first frame update
@@ -86,6 +86,7 @@ public class EnemyStateMachine : MonoBehaviour
     {
         HandleTurn myAttack = new HandleTurn();
         myAttack.attacker = enemy.name;
+        myAttack.type = "Enemy";
         myAttack.attacksGameObject = this.gameObject;
         myAttack.attackersTarget = BSM.heroesInBattle[Random.Range(0, BSM.heroesInBattle.Count)];
         BSM.CollectActionInformation(myAttack);
@@ -102,21 +103,30 @@ public class EnemyStateMachine : MonoBehaviour
 
         //enemy attack animation start
         Vector3 heroPosition = new Vector3(
-            heroToAttack.transform.position.x - 1.5f,
+            heroToAttack.transform.position.x + 1.5f,
             heroToAttack.transform.position.y,
             heroToAttack.transform.position.z
             );
-        while (MoveTowardsEnemy(heroPosition))
-        {
-            yield return null;
-        }
+        
+        //while enemy moving toward hero, do nothin
+        while (MoveTowardsEnemy(heroPosition)){yield return null;}
 
         //wait
-        //attack
-        //enemy init postiion animation start
-        //remove this performfrom BSM list
-        //rest BSM to wait
+        yield return new WaitForSeconds(0.5f);
 
+        //attack, do some damage
+
+        //enemy init postiion animation start
+        Vector3 firstPosition = startPosition;
+        while(MoveToStartPosition(firstPosition)){ yield return null; }
+
+        //remove this performfrom BSM list
+        BSM.performList.RemoveAt(0); // delete at this state, so next state can add
+
+        //rest BSM to wait
+        BSM.battleStates = BattleStateMachine.PerformAction.WAIT;
+
+        //end coroutine
         actionStarted = false;
         //reset enemy state
         currentCooldown = 0f;
@@ -131,5 +141,14 @@ public class EnemyStateMachine : MonoBehaviour
                 Vector3.MoveTowards(transform.position, 
                     target, 
                     animationSpeed * Time.deltaTime ));
+    }
+
+    bool MoveToStartPosition(Vector3 target)
+    {
+        return target !=
+            (transform.position =
+                Vector3.MoveTowards(transform.position,
+                    target,
+                    animationSpeed * Time.deltaTime));
     }
 }
