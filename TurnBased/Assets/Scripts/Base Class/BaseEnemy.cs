@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class BaseEnemy
+public class BaseEnemy : BaseClass
 {
-
     //Enemy Status
-
-    public string name;
-
     public enum Type
     { 
         GRASS,
@@ -20,7 +16,7 @@ public class BaseEnemy
 
     public enum Rarity
     {
-        COMMON,
+        COMMON, 
         UNCOMMON,
         RARE,
         SUPERRARE
@@ -29,17 +25,4 @@ public class BaseEnemy
 
     public Type enemyType;
     public Rarity rarity;
-
-    public float baseHP;
-    public float currentHP;
-
-    public float baseMP;
-    public float currentMP;
-
-    public float baseATK;
-    public float currentATK;
-    public float baseDEF;
-    public float currentDEF;
-
-
 }

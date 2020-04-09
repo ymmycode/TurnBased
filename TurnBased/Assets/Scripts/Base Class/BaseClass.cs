@@ -2,24 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class BaseHero 
+public class BaseClass 
 {
-
-    //hero Status
-    public string name;
-
+    public string theName;
     public float baseHP;
     public float currentHP;
 
     public float baseMP;
     public float currentMP;
 
-    public int stamina;
-    public int intellect;
-    public int dexterity;
-    public int agility;
-
-
-
+    public float baseATK;
+    public float currentATK;
+    public float baseDEF;
+    public float currentDEF;
 }
