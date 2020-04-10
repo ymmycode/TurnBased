@@ -10,7 +10,8 @@ public class HandleTurn
     public GameObject attacksGameObject; //can contain hero or ennemy state machine, and doing right script
     public GameObject attackersTarget; //who is going to be attacked
 
-    //
+    //which attack is performed
+    public BaseAttack choosenAttack;
 
 
 }

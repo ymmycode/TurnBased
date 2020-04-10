@@ -69,7 +69,7 @@ public class EnemyStateMachine : MonoBehaviour
                 break;
 
             case (TurnState.DEAD):
-
+                Debug.Log("The Hero Is Dead");
                 break;
 
         }
@@ -92,6 +92,14 @@ public class EnemyStateMachine : MonoBehaviour
         myAttack.type = "Enemy";
         myAttack.attacksGameObject = this.gameObject;
         myAttack.attackersTarget = BSM.heroesInBattle[Random.Range(0, BSM.heroesInBattle.Count)];
+
+
+        int num = Random.Range(0, enemy.attacks.Count);
+        myAttack.choosenAttack = enemy.attacks[num];
+        //Debug.Log(this.gameObject + "has choosen" 
+        //    + myAttack.choosenAttack.attackName +
+        //   ", damage output" + myAttack.choosenAttack.attackDamage);
+
         BSM.CollectActionInformation(myAttack);
     }
 
@@ -118,6 +126,7 @@ public class EnemyStateMachine : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         //attack, do some damage
+        DoDamage();
 
         //enemy init postiion animation start
         Vector3 firstPosition = startPosition;
@@ -153,5 +162,13 @@ public class EnemyStateMachine : MonoBehaviour
                 Vector3.MoveTowards(transform.position,
                     target,
                     animationSpeed * Time.deltaTime));
+    }
+
+    void DoDamage()
+    {
+        float currentAttack = enemy.currentATK;
+        float choosenAttack = BSM.performList[0].choosenAttack.attackDamage;
+        float calculatedDamage = currentAttack + choosenAttack;
+        heroToAttack.GetComponent<HeroStateMachine>().TakeDamage(calculatedDamage);
     }
 }

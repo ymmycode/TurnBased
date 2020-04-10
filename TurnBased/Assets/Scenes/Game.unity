@@ -856,12 +856,12 @@ PrefabInstance:
     - target: {fileID: 1994369843541696187, guid: ddc1c8e281c1191499e8478f7c614611,
         type: 3}
       propertyPath: baseHero.baseHP
-      value: 70
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1994369843541696187, guid: ddc1c8e281c1191499e8478f7c614611,
         type: 3}
       propertyPath: baseHero.currentHP
-      value: 70
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1994369843541696187, guid: ddc1c8e281c1191499e8478f7c614611,
         type: 3}
@@ -1332,8 +1332,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8996421469678325523, guid: a7f0c0377d3404f469c2cb2cedc96522,
         type: 3}
+      propertyPath: enemy.attacks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996421469678325523, guid: a7f0c0377d3404f469c2cb2cedc96522,
+        type: 3}
       propertyPath: enemy.theName
       value: Bug
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996421469678325523, guid: a7f0c0377d3404f469c2cb2cedc96522,
+        type: 3}
+      propertyPath: enemy.attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 3518314303250433956, guid: 0bb666a3d340f4945b08651f8ecc4c78,
+        type: 3}
+    - target: {fileID: 8996421469678325523, guid: a7f0c0377d3404f469c2cb2cedc96522,
+        type: 3}
+      propertyPath: enemy.attacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 7853705390114604227, guid: 416157b5a77ce6a4b98fc77bd81797de,
+        type: 3}
+    - target: {fileID: 8996421469678325523, guid: a7f0c0377d3404f469c2cb2cedc96522,
+        type: 3}
+      propertyPath: enemy.currentATK
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996421469678325523, guid: a7f0c0377d3404f469c2cb2cedc96522,
+        type: 3}
+      propertyPath: enemy.baseATK
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8996421469678325533, guid: a7f0c0377d3404f469c2cb2cedc96522,
         type: 3}
@@ -1925,12 +1952,12 @@ PrefabInstance:
     - target: {fileID: 1994369843541696187, guid: ddc1c8e281c1191499e8478f7c614611,
         type: 3}
       propertyPath: baseHero.baseHP
-      value: 40
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 1994369843541696187, guid: ddc1c8e281c1191499e8478f7c614611,
         type: 3}
       propertyPath: baseHero.currentHP
-      value: 40
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 1994369843541696187, guid: ddc1c8e281c1191499e8478f7c614611,
         type: 3}
@@ -2152,8 +2179,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8996421469678325523, guid: a7f0c0377d3404f469c2cb2cedc96522,
         type: 3}
+      propertyPath: enemy.attacks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996421469678325523, guid: a7f0c0377d3404f469c2cb2cedc96522,
+        type: 3}
       propertyPath: enemy.theName
       value: ShortCut
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996421469678325523, guid: a7f0c0377d3404f469c2cb2cedc96522,
+        type: 3}
+      propertyPath: enemy.attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 7853705390114604227, guid: 416157b5a77ce6a4b98fc77bd81797de,
+        type: 3}
+    - target: {fileID: 8996421469678325523, guid: a7f0c0377d3404f469c2cb2cedc96522,
+        type: 3}
+      propertyPath: enemy.attacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 3518314303250433956, guid: 0bb666a3d340f4945b08651f8ecc4c78,
+        type: 3}
+    - target: {fileID: 8996421469678325523, guid: a7f0c0377d3404f469c2cb2cedc96522,
+        type: 3}
+      propertyPath: enemy.baseATK
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996421469678325523, guid: a7f0c0377d3404f469c2cb2cedc96522,
+        type: 3}
+      propertyPath: enemy.currentATK
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8996421469678325533, guid: a7f0c0377d3404f469c2cb2cedc96522,
         type: 3}

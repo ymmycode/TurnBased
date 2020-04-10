@@ -156,4 +156,13 @@ public class HeroStateMachine : MonoBehaviour
                     target,
                     animationSpeed * Time.deltaTime));
     }
+
+    public void TakeDamage(float getDamageAmount)
+    {
+        baseHero.currentHP -= getDamageAmount;
+        if (baseHero.currentHP <= 0)
+        {
+            currentState = TurnState.DEAD;
+        }
+    }
 }
