@@ -80,8 +80,24 @@ public class BattleStateMachine : MonoBehaviour
                 if (performList[0].type == "Enemy")//who is going to this animation
                 {
                     EnemyStateMachine ESM = performer.GetComponent<EnemyStateMachine>();
-                    ESM.heroToAttack = performList[0].attackersTarget;
-                    ESM.currentState = EnemyStateMachine.TurnState.ACTION;
+                    //checking is currently attacked hero is in battle
+                    for ( int i = 0; i < heroesInBattle.Count; i++)
+                    {
+                        //checking attacker target same with hero in battle
+                        if (performList[0].attackersTarget == heroesInBattle[i])
+                        {
+                            ESM.heroToAttack = performList[0].attackersTarget;
+                            ESM.currentState = EnemyStateMachine.TurnState.ACTION;
+                            break;
+                        }
+                        else 
+                        {
+                            //prevent attack on dead hero
+                            performList[0].attackersTarget = heroesInBattle[Random.Range(0, heroesInBattle.Count)];
+                            ESM.heroToAttack = performList[0].attackersTarget;
+                            ESM.currentState = EnemyStateMachine.TurnState.ACTION;
+                        }
+                    }
                 }
                 
                 if (performList[0].type == "Hero")

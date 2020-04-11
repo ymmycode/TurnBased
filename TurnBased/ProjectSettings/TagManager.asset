@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Hero
   - Enemy
+  - Dead Hero
+  - Dead Enemy
   layers:
   - Default
   - TransparentFX

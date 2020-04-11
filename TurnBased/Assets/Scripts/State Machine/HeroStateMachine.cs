@@ -27,7 +27,7 @@ public class HeroStateMachine : MonoBehaviour
     float currentCooldown = 0f;
     float maxCooldown = 5f;
     float calculateCooldown;
-    [SerializeField] Image progressBar;
+    public Image progressBar;
 
     public GameObject selector;
 
@@ -35,6 +35,7 @@ public class HeroStateMachine : MonoBehaviour
     private bool actionStarted = false;
     private Vector3 startPosition;
     float animationSpeed = 10f;
+    public bool isAlive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -75,7 +76,44 @@ public class HeroStateMachine : MonoBehaviour
                 break;
 
             case (TurnState.DEAD):
-                
+                if (!isAlive)
+                {
+
+                }
+                else 
+                {
+                    //change tag
+                    this.gameObject.tag = "Dead Hero";
+
+                    //disable oncoming attack
+                    BSM.heroesInBattle.Remove(this.gameObject);
+
+                    //not managable 
+                    BSM.heroesToManage.Remove(this.gameObject);
+
+                    //disactivate the slector
+                    selector.SetActive(false);
+
+                    //reset GUI
+                    BSM.attackPanel.SetActive(false);
+                    BSM.enemySelectPanel.SetActive(false);
+
+                    //remove from the list
+                    for (int i = 0; i < BSM.performList.Count; i++)
+                    {
+                        if (BSM.performList[i].attacksGameObject == this.gameObject)
+                        {
+                            BSM.performList.Remove(BSM.performList[i]);//remover
+                        }
+                    }
+
+                    //Channge this color gameobject or play adead aanimation
+                    this.gameObject.GetComponentInChildren<MeshRenderer>().material.color =
+                        new Color32(105,105,105,255);
+
+                    //reset hero input
+                    isAlive = false;
+                }
                 break;
 
         }
