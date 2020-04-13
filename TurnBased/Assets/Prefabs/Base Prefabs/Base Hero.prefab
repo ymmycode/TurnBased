@@ -148,6 +148,7 @@ MonoBehaviour:
     currentATK: 0
     baseDEF: 0
     currentDEF: 0
+    attacks: []
     stamina: 0
     intellect: 0
     dexterity: 0
@@ -157,6 +158,9 @@ MonoBehaviour:
   selector: {fileID: 9150501688450749695, guid: f9aca4cdc92c3724380008d5c4f1c421,
     type: 3}
   enemyToAttack: {fileID: 0}
+  isAlive: 1
+  heroNewPanel: {fileID: 6994325375018504019, guid: 586e81df0447ed5408a53cd450882446,
+    type: 3}
 --- !u!1001 &7300458158275825686
 PrefabInstance:
   m_ObjectHideFlags: 0

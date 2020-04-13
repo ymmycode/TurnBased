@@ -34,6 +34,9 @@ public class EnemyStateMachine : MonoBehaviour
 
     public GameObject selector;
 
+    //dead logic
+    private bool isAlive = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -69,7 +72,44 @@ public class EnemyStateMachine : MonoBehaviour
                 break;
 
             case (TurnState.DEAD):
-                Debug.Log("The Hero Is Dead");
+                if (!isAlive)
+                {
+
+                }
+                else 
+                {
+                    //change tag of enemy
+                    this.gameObject.tag = "Dead Enemy";
+
+                    //cannot be attacked
+                    BSM.enemyInBattle.Remove(this.gameObject);
+
+                    //disable selector
+                    selector.SetActive(false);
+
+                    //remove all hero enemy input
+                    for (int i = 0; i < BSM.performList.Count; i++)
+                    {
+                        if (BSM.performList[i].attacksGameObject == this.gameObject)
+                        {
+                            BSM.performList.Remove(BSM.performList[i]); 
+                        }
+                    }
+
+                    //change the color or dead animation
+                    this.gameObject.GetComponentInChildren<MeshRenderer>().material.color = 
+                        new Color32(105, 105, 105, 255);//gray
+
+                    //set to dead
+                    isAlive = false;
+
+                    //reset or refresh enemy button
+                    BSM.EnemyButton();
+
+                    //Cheking condition
+                    BSM.battleStates = BattleStateMachine.PerformAction.CHECKLIFE;
+                }
+
                 break;
 
         }
@@ -92,7 +132,6 @@ public class EnemyStateMachine : MonoBehaviour
         myAttack.type = "Enemy";
         myAttack.attacksGameObject = this.gameObject;
         myAttack.attackersTarget = BSM.heroesInBattle[Random.Range(0, BSM.heroesInBattle.Count)];
-
 
         int num = Random.Range(0, enemy.attacks.Count);
         myAttack.choosenAttack = enemy.attacks[num];
@@ -169,6 +208,16 @@ public class EnemyStateMachine : MonoBehaviour
         float currentAttack = enemy.currentATK;
         float choosenAttack = BSM.performList[0].choosenAttack.attackDamage;
         float calculatedDamage = currentAttack + choosenAttack;
-        heroToAttack.GetComponent<HeroStateMachine>().TakeDamage(calculatedDamage);
+        heroToAttack.GetComponent<HeroStateMachine>().TakeDamageFromEnemy(calculatedDamage);
+    }
+
+    public void TakeDamageFromHero(float getDamageAmount)
+    {
+        enemy.currentHP -= getDamageAmount;
+        if ( enemy.currentHP <= 0)
+        {
+            enemy.currentHP = 0;
+            currentState = TurnState.DEAD;
+        }
     }
 }

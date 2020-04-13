@@ -11,7 +11,10 @@ public class BattleStateMachine : MonoBehaviour
     {
         WAIT,
         TAKEACTION,
-        PERFORMACTION
+        PERFORMACTION,
+        CHECKLIFE,
+        WIN,
+        LOSE
     }
 
     public PerformAction battleStates;
@@ -40,10 +43,20 @@ public class BattleStateMachine : MonoBehaviour
     //button parrent
     public Transform spacer;
 
-    //
+    //panel
     public GameObject attackPanel;//action panel
     public GameObject enemySelectPanel;//selected targert pannel
+    public GameObject magicPanel;//magic panel
     
+    //action of heroes
+    public Transform actionLayout;
+    public Transform magicLayout;
+    public GameObject actionButton;
+    public GameObject magicButton;
+    private List<GameObject> attackButtons = new List<GameObject>();
+
+    //enemy button
+    private List<GameObject> enemyButtons = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -54,8 +67,7 @@ public class BattleStateMachine : MonoBehaviour
 
         attackPanel.SetActive(false);
         enemySelectPanel.SetActive(false);
-        
-
+        magicPanel.SetActive(false);
 
         EnemyButton();
     }
@@ -113,8 +125,36 @@ public class BattleStateMachine : MonoBehaviour
 
             case (PerformAction.PERFORMACTION):
                 //idle
-                break;    
+                break;
+
+            case (PerformAction.CHECKLIFE):
+                if (heroesInBattle.Count < 1)
+                {
+                    //lose the battle
+                    battleStates = PerformAction.LOSE;
+                }
+                else if (enemyInBattle.Count < 1)
+                {
+                    //win the battle
+                    battleStates = PerformAction.WIN;
+                }
+                else 
+                {
+                    ClearAttackButton();
+                    heroInput = HeroGUI.ACTIVATE;
+                }
+                break;
+
+            case (PerformAction.WIN):
+                
+                break;
+
+            case (PerformAction.LOSE):
+                
+                break;
         }
+
+        //hero panel input
         switch (heroInput)
         {
             case (HeroGUI.ACTIVATE):
@@ -123,9 +163,12 @@ public class BattleStateMachine : MonoBehaviour
                     heroesToManage[0].transform.Find("Selector").gameObject.SetActive(true);
                     heroChoise = new HandleTurn();
 
-                    attackPanel.SetActive(true);
-                    heroInput = HeroGUI.WAITING;//set to waiting after activated
 
+
+                    attackPanel.SetActive(true);
+                    CreateButton();
+
+                    heroInput = HeroGUI.WAITING;//set to waiting after activa
                 }
                 break;
 
@@ -145,8 +188,16 @@ public class BattleStateMachine : MonoBehaviour
         performList.Add(input);
     }
 
-    void EnemyButton()
+    public void EnemyButton()
     {
+        //cleanup
+        foreach (GameObject enemyButton in enemyButtons)
+        {
+            Destroy(enemyButton);
+        }
+        enemyButtons.Clear();
+
+        //create button
         foreach (GameObject enemy in enemyInBattle)
         {
             GameObject newButton = Instantiate(enemyButton) as GameObject;//populate button with enemies object
@@ -159,6 +210,7 @@ public class BattleStateMachine : MonoBehaviour
 
             button.enemyPrefab = enemy;
             newButton.transform.SetParent(spacer, false);
+            enemyButtons.Add(newButton);
         }
     }
 
@@ -167,6 +219,9 @@ public class BattleStateMachine : MonoBehaviour
         heroChoise.attacker = heroesToManage[0].name; //storing the name of attacker
         heroChoise.attacksGameObject = heroesToManage[0];//storing attacker game object
         heroChoise.type = "Hero"; //set the type to hero
+
+        heroChoise.choosenAttack =
+            heroesToManage[0].GetComponent<HeroStateMachine>().baseHero.attacks[0];
 
         attackPanel.SetActive(false);
         enemySelectPanel.SetActive(true);
@@ -182,8 +237,91 @@ public class BattleStateMachine : MonoBehaviour
     {
         performList.Add(heroChoise);
         enemySelectPanel.SetActive(false);
+        ClearAttackButton();
+
         heroesToManage[0].transform.Find("Selector").gameObject.SetActive(false);
         heroesToManage.RemoveAt(0);
         heroInput = HeroGUI.ACTIVATE;
+    }
+
+    void ClearAttackButton()
+    {
+        enemySelectPanel.SetActive(false);
+        attackPanel.SetActive(false);
+        magicPanel.SetActive(false);
+
+        //delete button after done input
+        foreach (GameObject attackButton in attackButtons)
+        {
+            Destroy(attackButton);
+        }
+        attackButtons.Clear();
+
+    }
+
+    void CreateButton()
+    {
+        GameObject attackButton = Instantiate(actionButton) as GameObject;
+        Text attackButtonText = attackButton.transform.Find("Text").gameObject.GetComponent<Text>();
+        attackButtonText.text = "Attack";
+        attackButton.GetComponent<Button>().onClick.AddListener(() => AttackButton());
+        attackButton.transform.SetParent(actionLayout, false);
+        attackButtons.Add(attackButton);
+
+
+        GameObject magicButton = Instantiate(actionButton) as GameObject;
+        Text magicButtonText = magicButton.transform.Find("Text").gameObject.GetComponent<Text>();
+        magicButtonText.text = "Magic";
+        magicButton.GetComponent<Button>().onClick.AddListener(() => MagicSpellsPanel());
+        magicButton.transform.SetParent(actionLayout, false);
+        attackButtons.Add(magicButton);
+
+        //check if is there any magic skill in that current heroes
+        var magicOnCurrentHeroes = heroesToManage[0].GetComponent<HeroStateMachine>().baseHero.magicAttacks;
+        if (heroesToManage[0].GetComponent<HeroStateMachine>().baseHero.magicAttacks.Count > 0) //only perform the next action
+        {
+            foreach (BaseAttack magic in heroesToManage[0].GetComponent<HeroStateMachine>().baseHero.magicAttacks)
+            {
+                
+                //create button
+                GameObject magicSpellButton = Instantiate(magicButton) as GameObject;
+                Text spellButtonText = magicSpellButton.transform.Find("Text").gameObject.GetComponent<Text>();
+                spellButtonText.text = magic.attackName;
+   
+                MagicAttackButton MAB = magicSpellButton.GetComponent<MagicAttackButton>();
+                MAB.magicSpellToPerform = magic;
+                Debug.Log(MAB.magicSpellToPerform);
+                Debug.Log(magic);
+
+                
+                Debug.Log(MAB.magicSpellToPerform);
+
+
+                magicSpellButton.transform.SetParent(magicLayout, false);
+                attackButtons.Add(magicSpellButton);
+            }
+        }
+        else
+        {
+            magicButton.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    public void TargetMagicAttack(BaseAttack targetMagic)
+    {
+        heroChoise.attacker = heroesToManage[0].name; //storing the name of attacker
+        heroChoise.attacksGameObject = heroesToManage[0];//storing attacker game object
+        heroChoise.type = "Hero"; //set the type to hero
+
+        heroChoise.choosenAttack = targetMagic;
+        magicPanel.SetActive(false);
+        enemySelectPanel.SetActive(true);
+    }
+
+    public void MagicSpellsPanel()
+    {
+        enemySelectPanel.SetActive(false);
+        attackPanel.SetActive(false);
+        magicPanel.SetActive(true);
     }
 }

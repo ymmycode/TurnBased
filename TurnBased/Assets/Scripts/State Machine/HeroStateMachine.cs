@@ -35,11 +35,22 @@ public class HeroStateMachine : MonoBehaviour
     private bool actionStarted = false;
     private Vector3 startPosition;
     float animationSpeed = 10f;
+    
+    //deadlogic
     public bool isAlive = true;
+
+    //hero stat panel
+    private HeroStatPanel statsPanel;
+    public GameObject heroNewPanel;
+    public Transform heroPanelSpacer;
 
     // Start is called before the first frame update
     void Start()
     {
+        //find spacer or layout
+        //set the panel
+        CreateHeroPanel();
+
         startPosition = transform.position;
         //try get creative later on, use this to modifiy currennt cooldown
         //and lets call it "luck" or "stamina" status variable 
@@ -111,6 +122,7 @@ public class HeroStateMachine : MonoBehaviour
                     this.gameObject.GetComponentInChildren<MeshRenderer>().material.color =
                         new Color32(105,105,105,255);
 
+                    BSM.battleStates = BattleStateMachine.PerformAction.CHECKLIFE;
                     //reset hero input
                     isAlive = false;
                 }
@@ -158,6 +170,7 @@ public class HeroStateMachine : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         //attack, do some damage
+        DoDamage();
 
         //enemy init postiion animation start
         Vector3 firstPosition = startPosition;
@@ -195,12 +208,41 @@ public class HeroStateMachine : MonoBehaviour
                     animationSpeed * Time.deltaTime));
     }
 
-    public void TakeDamage(float getDamageAmount)
+    public void TakeDamageFromEnemy(float getDamageAmount)
     {
         baseHero.currentHP -= getDamageAmount;
         if (baseHero.currentHP <= 0)
         {
+            baseHero.currentHP = 0;
             currentState = TurnState.DEAD;
         }
+        UpdateHeroPanel();
+    }
+
+    void DoDamage()
+    {
+        float calculateDamage = baseHero.currentATK + BSM.performList[0].choosenAttack.attackDamage;
+        enemyToAttack.GetComponent<EnemyStateMachine>().TakeDamageFromHero(calculateDamage);
+    }
+
+    void CreateHeroPanel()
+    {
+
+        heroNewPanel = Instantiate(heroNewPanel) as GameObject;
+        statsPanel = heroNewPanel.GetComponent<HeroStatPanel>();
+        statsPanel.heroName.text = baseHero.theName;
+        statsPanel.heroHP.text = "HP : " + baseHero.currentHP.ToString();
+        statsPanel.heroMP.text = "MP : " + baseHero.currentMP.ToString();
+
+        progressBar = statsPanel.progressBar;
+        heroNewPanel.transform.SetParent(heroPanelSpacer, false);
+
+    }
+
+    //update and refresh hero stats panel
+    void UpdateHeroPanel()
+    {
+        statsPanel.heroHP.text = "HP : " + baseHero.currentHP.ToString();
+        statsPanel.heroMP.text = "MP : " + baseHero.currentMP.ToString();
     }
 }
