@@ -460,7 +460,12 @@ PrefabInstance:
     - target: {fileID: 4443194097440815708, guid: 8358cdb494c3ed64898715ee1c1389c1,
         type: 3}
       propertyPath: m_TagString
-      value: Leave Town
+      value: Transition
+      objectReference: {fileID: 0}
+    - target: {fileID: 8396321055841409782, guid: 8358cdb494c3ed64898715ee1c1389c1,
+        type: 3}
+      propertyPath: spawnPointName
+      value: SP_Leave_Block1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8358cdb494c3ed64898715ee1c1389c1, type: 3}

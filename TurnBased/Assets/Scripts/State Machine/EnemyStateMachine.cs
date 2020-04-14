@@ -92,15 +92,18 @@ public class EnemyStateMachine : MonoBehaviour
                         //remove all hero enemy input
                         for (int i = 0; i < BSM.performList.Count; i++)
                         {
-                            if (BSM.performList[i].attacksGameObject == this.gameObject)
+                            if (i != 0)//prevent to false delete
                             {
-                                BSM.performList.Remove(BSM.performList[i]);
-                            }
+                                if (BSM.performList[i].attacksGameObject == this.gameObject)
+                                {
+                                    BSM.performList.Remove(BSM.performList[i]);
+                                }
 
-                            if (BSM.performList[i].attackersTarget == this.gameObject)
-                            {
-                                BSM.performList[i].attackersTarget =
-                                    BSM.enemyInBattle[Random.Range(0, BSM.enemyInBattle.Count)];
+                                if (BSM.performList[i].attackersTarget == this.gameObject)
+                                {
+                                    BSM.performList[i].attackersTarget =
+                                        BSM.enemyInBattle[Random.Range(0, BSM.enemyInBattle.Count)];
+                                }
                             }
                         }
                     }

@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 8396321055841409782}
   m_Layer: 0
   m_Name: Gate
-  m_TagString: Untagged
+  m_TagString: Transition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -365,8 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: World Scene
-  spawnPoint: {fileID: 6838979958616305481, guid: 1d9f6aa0411452b4982c3b12172144da,
-    type: 3}
+  spawnPointName: 
 --- !u!1 &4443194097629862410
 GameObject:
   m_ObjectHideFlags: 0

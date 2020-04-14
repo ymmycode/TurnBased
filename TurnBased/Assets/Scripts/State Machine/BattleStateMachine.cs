@@ -58,11 +58,26 @@ public class BattleStateMachine : MonoBehaviour
     //enemy button
     private List<GameObject> enemyButtons = new List<GameObject>();
 
+    //spawn point
+    public List<Transform> spawnPoints = new List<Transform>();
+
+    private void Awake()
+    {
+        for (int i = 0; i < GameManager.gameInstance.enemyAmount; i++)
+        {
+            GameObject newEnemy = 
+                Instantiate(GameManager.gameInstance.enemiesToBattle[i], spawnPoints[i].position, Quaternion.identity) as GameObject;
+            newEnemy.name = newEnemy.GetComponent<EnemyStateMachine>().enemy.theName + "_" + (i+1);
+            newEnemy.GetComponent<EnemyStateMachine>().enemy.theName = newEnemy.name;
+            enemyInBattle.Add(newEnemy);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         battleStates = PerformAction.WAIT;
-        enemyInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy")); //how many Enemy is in the game
+        //enemyInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy")); //how many Enemy is in the game
         heroesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Hero")); //how many Hero is in the game
 
         attackPanel.SetActive(false);
@@ -146,7 +161,15 @@ public class BattleStateMachine : MonoBehaviour
                 break;
 
             case (PerformAction.WIN):
-                
+                for (int i = 0; i < heroesInBattle.Count; i++)
+                {
+                    heroesInBattle[i].GetComponent<HeroStateMachine>().currentState = 
+                        HeroStateMachine.TurnState.WAITING;
+                }
+
+                GameManager.gameInstance.LoadSceneAfterBattle();
+                GameManager.gameInstance.gameState = GameManager.GameStates.WORLD_STATE;
+                GameManager.gameInstance.enemiesToBattle.Clear();
                 break;
 
             case (PerformAction.LOSE):
