@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Dead Hero
   - Dead Enemy
+  - Enter Town
+  - Leave Town
   layers:
   - Default
   - TransparentFX

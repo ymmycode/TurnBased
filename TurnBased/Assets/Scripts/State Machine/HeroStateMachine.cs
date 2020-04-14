@@ -109,12 +109,21 @@ public class HeroStateMachine : MonoBehaviour
                     BSM.attackPanel.SetActive(false);
                     BSM.enemySelectPanel.SetActive(false);
 
-                    //remove from the list
-                    for (int i = 0; i < BSM.performList.Count; i++)
+                    if (BSM.heroesInBattle.Count > 0)
                     {
-                        if (BSM.performList[i].attacksGameObject == this.gameObject)
+                        //remove from the list
+                        for (int i = 0; i < BSM.performList.Count; i++)
                         {
-                            BSM.performList.Remove(BSM.performList[i]);//remover
+                            if (BSM.performList[i].attacksGameObject == this.gameObject)
+                            {
+                                BSM.performList.Remove(BSM.performList[i]);//remover
+                            }
+
+                            if (BSM.performList[i].attackersTarget == this.gameObject)
+                            {
+                                BSM.performList[i].attackersTarget =
+                                    BSM.heroesInBattle[Random.Range(0, BSM.heroesInBattle.Count)];
+                            }
                         }
                     }
 
