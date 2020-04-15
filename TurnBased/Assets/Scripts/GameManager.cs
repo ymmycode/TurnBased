@@ -154,5 +154,7 @@ public class GameManager : MonoBehaviour
         isWalking = false;
         gettingAttacked = false;
         canGetEncounter = false;
+        UnityEngine.Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
     }
 }

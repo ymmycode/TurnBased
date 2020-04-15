@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class HeroMovement : MonoBehaviour
 {
+    //private CharacterController characterController;
 
     public float movementSpeed = 100f;
+    public float rotationSpeed = 240f;
+
+    private Vector3 moveDirection = Vector3.zero;
 
     Vector3 currentPosition, lastPosition;
 
     // Start is called before the first frame update
     void Start()
+    {
+        //characterController = GetComponent<CharacterController>();
+        ProcessHeroLocation();
+    }
+
+    private void ProcessHeroLocation()
     {
         if (GameManager.gameInstance.nextSpawnPoint != "")
         {
@@ -51,11 +61,16 @@ public class HeroMovement : MonoBehaviour
 
     private void Movement()
     {
+        //getting movement input
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveX, 0, moveZ);
-        GetComponent<Rigidbody>().velocity = movement * movementSpeed * Time.deltaTime;
+        
+
+        Vector3 movement = new Vector3(moveX, 0, moveZ).normalized * movementSpeed * Time.deltaTime;
+        transform.Translate(movement, Space.Self);
+
+        //GetComponent<Rigidbody>().velocity = movement * movementSpeed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -68,26 +83,6 @@ public class HeroMovement : MonoBehaviour
             GameManager.gameInstance.sceneToLoad = col.sceneToLoad;
             GameManager.gameInstance.LoadNextScene();
         }
-
-        /*
-        if (other.tag == "Enter Town")
-        {
-            CollisionHandler collisionHandler = other.GetComponent<CollisionHandler>();
-            GameManager.gameInstance.newHeroPosition =
-                collisionHandler.spawnPoint.transform.position;
-            GameManager.gameInstance.sceneToLoad = collisionHandler.sceneToLoad;
-            GameManager.gameInstance.LoadNextScene();
-        }
-
-        if (other.tag == "Leave Town")
-        {
-            CollisionHandler collisionHandler = other.GetComponent<CollisionHandler>();
-            GameManager.gameInstance.newHeroPosition =
-                collisionHandler.spawnPoint.transform.position;
-            GameManager.gameInstance.sceneToLoad = collisionHandler.sceneToLoad;
-            GameManager.gameInstance.LoadNextScene();
-        }
-        */
 
         if (other.tag == "Encounter Zone")
         {
