@@ -10,6 +10,7 @@ TagManager:
   - Dead Enemy
   - Transition
   - Encounter Zone
+  - Computer
   layers:
   - Default
   - TransparentFX

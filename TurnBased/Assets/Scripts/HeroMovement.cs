@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class HeroMovement : MonoBehaviour
 {
+    public HUD hud;
+    public Gates gate;
+    public GameObject computer;
+
     //private CharacterController characterController;
 
     public float movementSpeed = 100f;
@@ -33,6 +37,15 @@ public class HeroMovement : MonoBehaviour
         {
             transform.position = GameManager.gameInstance.previousHeroPosition;
             GameManager.gameInstance.previousHeroPosition = Vector3.zero;
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            gate.OpenGate();
+            hud.CloseMessagePanel("");
         }
     }
 
@@ -90,6 +103,9 @@ public class HeroMovement : MonoBehaviour
             GameManager.gameInstance.currentRegion = region;
         }
 
+        if (other.tag == "Computer")
+            hud.OpenMessagePanel("");
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -104,7 +120,10 @@ public class HeroMovement : MonoBehaviour
     {
         if (other.tag == "Encounter Zone")
         {
-            GameManager.gameInstance.canGetEncounter = true;
+            GameManager.gameInstance.canGetEncounter = false;
         }
+
+        if (other.tag == "Computer")
+            hud.CloseMessagePanel("");
     }
 }
