@@ -5,7 +5,9 @@ using UnityEngine;
 public class HeroMovement : MonoBehaviour
 {
     public HUD hud;
-    public Gates gate;
+    public GameObject cameraMovementStop;
+    public GameObject flowchart;
+
     public GameObject computer;
 
     //private CharacterController characterController;
@@ -44,8 +46,13 @@ public class HeroMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            gate.OpenGate();
+            cameraMovementStop.GetComponent<PlayerFollow>().enabled = false;
+
+            UnityEngine.Cursor.visible = true;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+
             hud.CloseMessagePanel("");
+            flowchart.GetComponent<DragnDrop>().LaunchPanel();
         }
     }
 

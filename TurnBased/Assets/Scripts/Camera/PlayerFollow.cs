@@ -61,8 +61,5 @@ public class PlayerFollow : MonoBehaviour
             target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
             playerTransform.rotation = Quaternion.Euler(0, mouseX, 0);
         }
-
-        
-
     }
 }

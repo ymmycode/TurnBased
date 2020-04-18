@@ -48,3 +48,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2523438165
+    locked: 0
+  - name: Diagram
+    uniqueID: 3783402631
+    locked: 0
+  - name: DragObject
+    uniqueID: 1809526135
+    locked: 0
+  - name: BlackObject
+    uniqueID: 1909451015
+    locked: 0
