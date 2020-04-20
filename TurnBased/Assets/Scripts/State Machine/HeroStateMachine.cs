@@ -44,6 +44,10 @@ public class HeroStateMachine : MonoBehaviour
     public GameObject heroNewPanel;
     public Transform heroPanelSpacer;
 
+    //math boosted damage
+    public float mathBoostDamage;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -233,7 +237,7 @@ public class HeroStateMachine : MonoBehaviour
 
     void DoDamage()
     {
-        float calculateDamage = baseHero.currentATK + BSM.performList[0].choosenAttack.attackDamage;
+        float calculateDamage = baseHero.currentATK + BSM.performList[0].choosenAttack.attackDamage + mathBoostDamage;
         enemyToAttack.GetComponent<EnemyStateMachine>().TakeDamageFromHero(calculateDamage);
     }
 

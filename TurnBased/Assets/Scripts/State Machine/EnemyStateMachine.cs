@@ -225,6 +225,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void TakeDamageFromHero(float getDamageAmount)
     {
+        Debug.LogWarning(getDamageAmount);
         enemy.currentHP -= getDamageAmount;
         if ( enemy.currentHP <= 0)
         {

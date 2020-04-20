@@ -804,6 +804,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4732013673360610351, guid: 354bb06c39bdd7c439d5c9ee4e4ae8fb,
+        type: 3}
+      propertyPath: battleScene
+      value: Battle Scene 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4732013673360610356, guid: 354bb06c39bdd7c439d5c9ee4e4ae8fb,
         type: 3}
       propertyPath: m_Name
@@ -878,6 +883,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Region 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5007653028728296790, guid: 0df5a53514c4ed941ab642180417055a,
+        type: 3}
+      propertyPath: battleScene
+      value: Battle Scene 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0df5a53514c4ed941ab642180417055a, type: 3}
 --- !u!1001 &8635109259583464220
@@ -941,6 +951,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8635109259826993034, guid: 68daa32e529d0d54c83e608a0a610690,
+        type: 3}
+      propertyPath: battleScene
+      value: Battle Scene 1
       objectReference: {fileID: 0}
     - target: {fileID: 8635109259826993037, guid: 68daa32e529d0d54c83e608a0a610690,
         type: 3}

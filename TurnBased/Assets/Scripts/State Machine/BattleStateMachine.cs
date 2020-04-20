@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,6 +49,7 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject attackPanel;//action panel
     public GameObject enemySelectPanel;//selected targert pannel
     public GameObject magicPanel;//magic panel
+    public GameObject mathPanel;//math panel for boosting damage
     
     //action of heroes
     public Transform actionLayout;
@@ -60,6 +63,12 @@ public class BattleStateMachine : MonoBehaviour
 
     //spawn point
     public List<Transform> spawnPoints = new List<Transform>();
+
+    //math quest
+    public MathScript mathScript;
+    private MathScript mathBoost;
+    int answer, totalMath;
+    public GameObject boostedDamage;
 
     private void Awake()
     {
@@ -76,6 +85,7 @@ public class BattleStateMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mathBoost = mathScript.GetComponent<MathScript>();
         battleStates = PerformAction.WAIT;
         //enemyInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy")); //how many Enemy is in the game
         heroesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Hero")); //how many Hero is in the game
@@ -83,6 +93,7 @@ public class BattleStateMachine : MonoBehaviour
         attackPanel.SetActive(false);
         enemySelectPanel.SetActive(false);
         magicPanel.SetActive(false);
+        mathPanel.SetActive(false);
 
         EnemyButton();
     }
@@ -90,7 +101,7 @@ public class BattleStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(battleStates);
+        //Debug.Log(battleStates);
         switch (battleStates)
         {
             case (PerformAction.WAIT):
@@ -120,7 +131,7 @@ public class BattleStateMachine : MonoBehaviour
                         else 
                         {
                             //prevent attack on dead hero
-                            performList[0].attackersTarget = heroesInBattle[Random.Range(0, heroesInBattle.Count)];
+                            performList[0].attackersTarget = heroesInBattle[UnityEngine.Random.Range(0, heroesInBattle.Count)];
                             ESM.heroToAttack = performList[0].attackersTarget;
                             ESM.currentState = EnemyStateMachine.TurnState.ACTION;
                         }
@@ -239,21 +250,111 @@ public class BattleStateMachine : MonoBehaviour
 
     public void AttackButton()
     {
+        mathPanel.SetActive(true);
+        mathBoost.SetQuestion();
+        attackPanel.SetActive(false);
+        enemySelectPanel.SetActive(false);
+    }
+
+    private void PerformingDamageBoostedHero()
+    {
         heroChoise.attacker = heroesToManage[0].name; //storing the name of attacker
         heroChoise.attacksGameObject = heroesToManage[0];//storing attacker game object
         heroChoise.type = "Hero"; //set the type to hero
 
         heroChoise.choosenAttack =
-            heroesToManage[0].GetComponent<HeroStateMachine>().baseHero.attacks[0];
+        heroesToManage[0].GetComponent<HeroStateMachine>().baseHero.attacks[0];
+        
+        heroesToManage[0].GetComponent<HeroStateMachine>().mathBoostDamage = 10;
 
-        attackPanel.SetActive(false);
+        mathPanel.SetActive(false);
         enemySelectPanel.SetActive(true);
     }
 
+    private void PerformingHero()
+    {
+        heroChoise.attacker = heroesToManage[0].name; //storing the name of attacker
+        heroChoise.attacksGameObject = heroesToManage[0];//storing attacker game object
+        heroChoise.type = "Hero"; //set the type to hero
+
+        heroChoise.choosenAttack =
+        heroesToManage[0].GetComponent<HeroStateMachine>().baseHero.attacks[0];
+
+        heroesToManage[0].GetComponent<HeroStateMachine>().mathBoostDamage = 0;
+
+        mathPanel.SetActive(false);
+        enemySelectPanel.SetActive(true);
+    }
+
+
+
     public void EnemySelection(GameObject choosenEnemy)
+    {
+
+        //mathPanel.SetActive(true);
+        //mathBoost.SetQuestion();
+        AttackChoosen(choosenEnemy);
+    }
+
+    private void AttackChoosen(GameObject choosenEnemy)
     {
         heroChoise.attackersTarget = choosenEnemy;//selected target
         heroInput = HeroGUI.DONE;
+    }
+
+    public void ButtonMath1()
+    {
+        answer = int.Parse(mathBoost.buttonAnswer1Text.text);
+        totalMath = mathBoost.total;
+
+        if (answer == totalMath)
+        {
+            PerformingDamageBoostedHero();
+            boostedDamage.GetComponent<Animator>().Play("Boosted", 0, 0f);
+        }
+        else
+        {
+            PerformingHero();
+        }
+
+    }
+
+    public void ButtonMath2()
+    {
+        answer = int.Parse(mathBoost.buttonAnswer2Text.text);
+        totalMath = mathBoost.total;
+
+        if (answer == totalMath)
+        {
+            PerformingDamageBoostedHero();
+            boostedDamage.GetComponent<Animator>().Play("Boosted", 0, 0f);
+        }
+        else
+        {
+            PerformingHero();
+        }
+
+    }
+    public void ButtonMath3()
+    {
+
+        answer = int.Parse(mathBoost.buttonAnswer3Text.text);
+        totalMath = mathBoost.total;
+
+        if (answer == totalMath)
+        {
+            PerformingDamageBoostedHero();
+            boostedDamage.GetComponent<Animator>().Play("Boosted", 0, 0f);
+        }
+        else
+        {
+            PerformingHero();
+        }
+    }
+
+    public void RefreshQuestion()
+    {
+        mathBoost.SetQuestion();
     }
 
     public void HeroInputDone()
