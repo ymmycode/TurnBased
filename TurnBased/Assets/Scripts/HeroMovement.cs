@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HeroMovement : MonoBehaviour
 {
+    //hero gameobject
+    public GameObject heroItSelf;
     public HUD hud;
     public GameObject cameraMovementStop;
     public GameObject flowchart;
@@ -12,16 +14,13 @@ public class HeroMovement : MonoBehaviour
 
     //private CharacterController characterController;
 
-    public float movementSpeed = 100f;
-    public float rotationSpeed = 240f;
-
-    private Vector3 moveDirection = Vector3.zero;
-
-    Vector3 currentPosition, lastPosition;
+    //hero current and last pos
+    Vector3 currentPosition, lastPosition; 
 
     // Start is called before the first frame update
     void Start()
     {
+        
         //characterController = GetComponent<CharacterController>();
         ProcessHeroLocation();
     }
@@ -44,8 +43,14 @@ public class HeroMovement : MonoBehaviour
 
     private void Update()
     {
+        LaunchFlowchartPuzzle();
+    }
+
+    private void LaunchFlowchartPuzzle()
+    {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            heroItSelf.GetComponent<MovementMech>().enabled = false;
             cameraMovementStop.GetComponent<PlayerFollow>().enabled = false;
 
             UnityEngine.Cursor.visible = true;
@@ -59,7 +64,6 @@ public class HeroMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Movement();
         MovementMeasurment();
     }
 
@@ -77,20 +81,6 @@ public class HeroMovement : MonoBehaviour
             GameManager.gameInstance.isWalking = true;
         }
         lastPosition = currentPosition;
-    }
-
-    private void Movement()
-    {
-        //getting movement input
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
-
-        
-
-        Vector3 movement = new Vector3(moveX, 0, moveZ).normalized * movementSpeed * Time.deltaTime;
-        transform.Translate(movement, Space.Self);
-
-        //GetComponent<Rigidbody>().velocity = movement * movementSpeed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -11,6 +11,7 @@ TagManager:
   - Transition
   - Encounter Zone
   - Computer
+  - Ground
   layers:
   - Default
   - TransparentFX

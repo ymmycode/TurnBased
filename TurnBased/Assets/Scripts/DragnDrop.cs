@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DragnDrop : MonoBehaviour
 {
-
+    public GameObject heroItSelf;
     public GameObject key,gate, keyBlack, gateBlack;
 
     public Button processButton;
@@ -78,8 +78,10 @@ public class DragnDrop : MonoBehaviour
     {
         ClosePanel();
         Invoke("GateOpening", .7f);
-        cameraToMove.GetComponent<PlayerFollow>().enabled = true;
+        cameraToMove.GetComponent<PlayerFollow>().enabled = true;//enabling camera follow
+        heroItSelf.GetComponent<MovementMech>().enabled = true;//enabling movemet mechanic
         Invoke("DisablePuzzle", 2f);
+        
     }
 
     void DisablePuzzle()
@@ -109,7 +111,7 @@ public class DragnDrop : MonoBehaviour
     {
         ClosePanel();
         Invoke("Follow", 1f);
-        
+        heroItSelf.GetComponent<MovementMech>().enabled = true;
     }
 
     void Follow()
