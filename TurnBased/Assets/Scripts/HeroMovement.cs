@@ -12,6 +12,9 @@ public class HeroMovement : MonoBehaviour
 
     public GameObject computer;
 
+    public bool isNearComputer = false;
+
+
     //private CharacterController characterController;
 
     //hero current and last pos
@@ -20,9 +23,15 @@ public class HeroMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        heroItSelf.GetComponent<MovementMech>().enabled = false;
+        Invoke("EnableMovement",2f);
         //characterController = GetComponent<CharacterController>();
         ProcessHeroLocation();
+    }
+
+    void EnableMovement()
+    {
+        heroItSelf.GetComponent<MovementMech>().enabled = true;
     }
 
     private void ProcessHeroLocation()
@@ -43,7 +52,10 @@ public class HeroMovement : MonoBehaviour
 
     private void Update()
     {
-        LaunchFlowchartPuzzle();
+        if(isNearComputer == true)
+        {
+            LaunchFlowchartPuzzle();
+        }
     }
 
     private void LaunchFlowchartPuzzle()
@@ -101,8 +113,10 @@ public class HeroMovement : MonoBehaviour
         }
 
         if (other.tag == "Computer")
+        {
             hud.OpenMessagePanel("");
-
+            isNearComputer = true;        
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -121,6 +135,9 @@ public class HeroMovement : MonoBehaviour
         }
 
         if (other.tag == "Computer")
+        {
             hud.CloseMessagePanel("");
+            isNearComputer = false;
+        }
     }
 }

@@ -384,6 +384,11 @@ PrefabInstance:
       propertyPath: spawnPointName
       value: SP_Leave_Block1
       objectReference: {fileID: 0}
+    - target: {fileID: 8396321055841409782, guid: 8358cdb494c3ed64898715ee1c1389c1,
+        type: 3}
+      propertyPath: sceneToLoad
+      value: World Scene 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8358cdb494c3ed64898715ee1c1389c1, type: 3}
 --- !u!1001 &6630358475422421727

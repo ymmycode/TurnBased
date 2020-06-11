@@ -7,6 +7,7 @@ public class Gates : MonoBehaviour
 
     public GameObject theGates;
     Animator gateAnimation;
+    public string animationName;
 
     private void Start()
     {
@@ -15,7 +16,6 @@ public class Gates : MonoBehaviour
 
     public void OpenGate()
     {
-        Debug.Log("Open");
-        gateAnimation.Play("Open");
+        gateAnimation.Play(animationName);
     }
 }
