@@ -10,10 +10,6 @@ public class SimpleInteract : MonoBehaviour
     public GameObject gateToOpen;
     public GameObject cameraToMove;
 
-    Vector2 keyStartPos, gateStartPos;
-
-    bool keyCorrect, gateCorrect = false;
-
     private void Start()
     {
         processButton.interactable = true;
@@ -33,7 +29,6 @@ public class SimpleInteract : MonoBehaviour
         cameraToMove.GetComponent<PlayerFollow>().enabled = true;//enabling camera follow
         heroItSelf.GetComponent<MovementMech>().enabled = true;//enabling movemet mechanic
         Invoke("DisablePuzzle", 2f);
-        
     }
 
     void DisablePuzzle()
@@ -49,14 +44,19 @@ public class SimpleInteract : MonoBehaviour
 
     public void LaunchPanel()
     {
-        GetComponent<Animator>().Play("LaunchAnim0");
+        GetComponent<Animator>().SetBool("isOpen", true);
     }
 
     public void ClosePanel()
     {
-        GetComponent<Animator>().Play("CloseAnim");
+        GetComponent<Animator>().SetBool("isOpen", false);
+        //LeanTween.scale(gameObject, new Vector3(0,0,0), 1f);
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+    }
+    void DestroyThisObject()
+    {
+        Destroy(this);
     }
 
     public void BackButton()

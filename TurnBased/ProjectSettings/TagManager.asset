@@ -12,6 +12,9 @@ TagManager:
   - Encounter Zone
   - Computer
   - Ground
+  - Computer 1
+  - F1
+  - F2
   layers:
   - Default
   - TransparentFX

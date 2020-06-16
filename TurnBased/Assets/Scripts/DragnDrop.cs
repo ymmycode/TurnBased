@@ -102,9 +102,15 @@ public class DragnDrop : MonoBehaviour
 
     public void ClosePanel()
     {
-        GetComponent<Animator>().Play("CloseAnim");
+        //GetComponent<Animator>().Play("CloseAnim");
+        LeanTween.scale(gameObject, new Vector3(0,0,0), 1f);
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void DestroyThisObject()
+    {
+        Destroy(this);
     }
 
     public void BackButton()

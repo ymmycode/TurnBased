@@ -7,11 +7,7 @@ public class HeroMovement : MonoBehaviour
     //hero gameobject
     public GameObject heroItSelf;
     public HUD hud;
-    public GameObject cameraMovementStop;
-    public GameObject flowchart;
-
-    public GameObject computer;
-
+    
     public bool isNearComputer = false;
 
 
@@ -47,29 +43,6 @@ public class HeroMovement : MonoBehaviour
         {
             transform.position = GameManager.gameInstance.previousHeroPosition;
             GameManager.gameInstance.previousHeroPosition = Vector3.zero;
-        }
-    }
-
-    private void Update()
-    {
-        if(isNearComputer == true)
-        {
-            LaunchFlowchartPuzzle();
-        }
-    }
-
-    private void LaunchFlowchartPuzzle()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            heroItSelf.GetComponent<MovementMech>().enabled = false;
-            cameraMovementStop.GetComponent<PlayerFollow>().enabled = false;
-
-            UnityEngine.Cursor.visible = true;
-            UnityEngine.Cursor.lockState = CursorLockMode.None;
-
-            hud.CloseMessagePanel("");
-            flowchart.GetComponent<DragnDrop>().LaunchPanel();
         }
     }
 
@@ -114,8 +87,7 @@ public class HeroMovement : MonoBehaviour
 
         if (other.tag == "Computer")
         {
-            hud.OpenMessagePanel("");
-            isNearComputer = true;        
+            hud.OpenMessagePanel("");      
         }
     }
 
@@ -133,11 +105,10 @@ public class HeroMovement : MonoBehaviour
         {
             GameManager.gameInstance.canGetEncounter = false;
         }
-
+        
         if (other.tag == "Computer")
         {
-            hud.CloseMessagePanel("");
-            isNearComputer = false;
+            hud.CloseMessagePanel("");   
         }
     }
 }
