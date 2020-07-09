@@ -97,13 +97,13 @@ public class DragnDrop : MonoBehaviour
 
     public void LaunchPanel()
     {
-        GetComponent<Animator>().Play("LaunchAnim0");
+        GetComponent<Animator>().SetBool("isOpen", true);
     }
 
     public void ClosePanel()
     {
-        //GetComponent<Animator>().Play("CloseAnim");
-        LeanTween.scale(gameObject, new Vector3(0,0,0), 1f);
+        GetComponent<Animator>().SetBool("isOpen", false);
+        //LeanTween.scale(gameObject, new Vector3(0,0,0), 1f);
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
