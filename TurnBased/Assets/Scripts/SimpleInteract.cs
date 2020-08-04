@@ -45,6 +45,7 @@ public class SimpleInteract : MonoBehaviour
     public void LaunchPanel()
     {
         GetComponent<Animator>().SetBool("isOpen", true);
+        GetComponent<Animator>().SetTrigger("isSpinGlow");
     }
 
     public void ClosePanel()

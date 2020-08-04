@@ -14,9 +14,12 @@ GameObject:
   - component: {fileID: 3571743904466724922}
   - component: {fileID: 3571743904466724923}
   - component: {fileID: 3571743904466724920}
+  - component: {fileID: 4555058668918202944}
+  - component: {fileID: 1322398072}
+  - component: {fileID: 1322398073}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Transition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5569,4 +5572,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollX: 0.1
   scrollY: 0.1
-  transparency: 1
+--- !u!95 &4555058668918202944
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3571743904466724921}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d28b6f9ab89121429b9cfba05d0f987, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1322398072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3571743904466724921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5783a47997d1214cb971f276bdb8639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theGates: {fileID: 3571743904466724921}
+  animationName: PortalCyl
+--- !u!114 &1322398073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3571743904466724921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ee1631fb6d8d746afff218edd3d5b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: C1L4
+  spawnPointName: SP_Enter

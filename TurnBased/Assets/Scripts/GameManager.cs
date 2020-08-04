@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(SceneManager.GetActiveScene().name == "Logged Main Menu"){this.gameObject.SetActive(false);}
+        else{this.gameObject.SetActive(true);}
         switch (gameState)
         {
             case (GameStates.WORLD_STATE):
