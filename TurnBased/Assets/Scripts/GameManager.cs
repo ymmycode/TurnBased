@@ -44,11 +44,20 @@ public class GameManager : MonoBehaviour
 
     //spawn pointn
     public string nextSpawnPoint;
+    
 
     private void Update()
     {
-        if(SceneManager.GetActiveScene().name == "Logged Main Menu"){this.gameObject.SetActive(false);}
-        else{this.gameObject.SetActive(true);}
+        if(SceneManager.GetActiveScene().name == "Main Menu with Database" 
+            || SceneManager.GetActiveScene().name == "C1TBC")
+            {
+                UnityEngine.Cursor.visible = true;
+                UnityEngine.Cursor.lockState = CursorLockMode.None;
+                heroCharacter.SetActive(false);
+                this.gameObject.SetActive(false);
+            }
+        else{this.gameObject.SetActive(true);heroCharacter.SetActive(true);}
+
         switch (gameState)
         {
             case (GameStates.WORLD_STATE):

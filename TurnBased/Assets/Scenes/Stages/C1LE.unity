@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1823,7 +1823,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh590956
+  m_Name: pb_Mesh72490
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2975,7 +2975,7 @@ GameObject:
   - component: {fileID: 323783418}
   m_Layer: 0
   m_Name: Stairs
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5803,7 +5803,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh591184
+  m_Name: pb_Mesh72718
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17735,7 +17735,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh569528
+  m_Name: pb_Mesh72322
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -29268,7 +29268,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh590690
+  m_Name: pb_Mesh72220
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -30848,7 +30848,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh569896
+  m_Name: pb_Mesh72694
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -32673,7 +32673,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh570558
+  m_Name: pb_Mesh73362
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -33233,6 +33233,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Hero
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128639473450100150, guid: 3c452b1cb4327164985934d9216fcdfd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c452b1cb4327164985934d9216fcdfd, type: 3}
@@ -34069,7 +34074,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh569414
+  m_Name: pb_Mesh72206
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

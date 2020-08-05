@@ -6,15 +6,16 @@ using UnityEngine.SceneManagement;
 public class Music : MonoBehaviour
 {
     static Music instance;
+    public string activeScene;
 
     void Awake() 
     {
-        if(instance == null)
+        if(instance == null )
         {
             instance = this;
             DontDestroyOnLoad(transform.gameObject);
         }
-        else if(instance != this)
+        else if(instance != this )
         {
             Destroy(this.gameObject);
         }
@@ -28,7 +29,8 @@ public class Music : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().name == "Main Menu with Database")
+        activeScene = SceneManager.GetActiveScene().name;
+        if(activeScene == "Main Menu with Database" || activeScene == "C1TBC" ) 
         {Destroy(this.gameObject);}
     }
 }
