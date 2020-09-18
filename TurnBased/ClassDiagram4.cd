@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BaseAttack">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgACAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Assets\Scripts\Attacks\BaseAttack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.MonoBehaviour">
+    <Position X="7.25" Y="0.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Web">
+    <Position X="6.5" Y="9.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAQAhAASMAAAAAGAAAAAAEAICBCCAAAwAQAAAAFAA=</HashCode>
+      <FileName>Assets\Scripts\Database\Web.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CollisionHandler">
+    <Position X="4.5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\CollisionHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleStateMachine">
+    <Position X="12.75" Y="0.75" Width="2.5" />
+    <NestedTypes>
+      <Enum Name="BattleStateMachine.PerformAction" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\State Machine\BattleStateMachine.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="BattleStateMachine.HeroGUI" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\State Machine\BattleStateMachine.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gQQAgEAAAKIwCAAAAEgAAQABMAQCwSQAIAEAAErSg8I=</HashCode>
+      <FileName>Assets\Scripts\State Machine\BattleStateMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HeroStateMachine">
+    <Position X="10.5" Y="6.5" Width="2" />
+    <NestedTypes>
+      <Enum Name="HeroStateMachine.TurnState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\State Machine\HeroStateMachine.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AgSAEACwIKAAADAQIAoCQAAAAAAAgBAAAAAAAEEgIAA=</HashCode>
+      <FileName>Assets\Scripts\State Machine\HeroStateMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyStateMachine">
+    <Position X="10.5" Y="0.75" Width="2" />
+    <NestedTypes>
+      <Enum Name="EnemyStateMachine.TurnState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\State Machine\EnemyStateMachine.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAACgIKAAABAAIAgCACAAAAAAABQAAIAAAEEAIAI=</HashCode>
+      <FileName>Assets\Scripts\State Machine\EnemyStateMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerFollow">
+    <Position X="4.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAACAQAAAAIAAAAEAAABAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Camera\PlayerFollow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenu">
+    <Position X="8.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AUQAAAABAAIABAAhAEAMgIAAIMBAEAAMQQEAIQABkgg=</HashCode>
+      <FileName>Assets\Scripts\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MathScript">
+    <Position X="4.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEBAAAACAAAAEAAAAAAIAAAAAAAAAAAEDAAQAACAI=</HashCode>
+      <FileName>Assets\Scripts\MathScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PauseGame">
+    <Position X="2.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQgAAAAAAAEkAAAAAAAAAAACABAAABgEAIYAAgEAAA=</HashCode>
+      <FileName>Assets\Scripts\PauseGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DragnDrop">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="ColorInit" Hidden="true" />
+      <Method Name="DragKey1" Hidden="true" />
+      <Method Name="DragKey2" Hidden="true" />
+      <Method Name="DragNumberEight" Hidden="true" />
+      <Method Name="DragNumberFive" Hidden="true" />
+      <Method Name="DragNumberFour" Hidden="true" />
+      <Method Name="DragNumberNine" Hidden="true" />
+      <Method Name="DragNumberOne" Hidden="true" />
+      <Method Name="DragNumberSeven" Hidden="true" />
+      <Method Name="DragNumberSix" Hidden="true" />
+      <Method Name="DragNumberThree" Hidden="true" />
+      <Method Name="DragNumberTwo" Hidden="true" />
+      <Method Name="DragNumberZero" Hidden="true" />
+      <Method Name="DragPlat1" Hidden="true" />
+      <Method Name="DragPlat2" Hidden="true" />
+      <Method Name="DropKey1" Hidden="true" />
+      <Method Name="DropKey2" Hidden="true" />
+      <Method Name="DropNumberEight" Hidden="true" />
+      <Method Name="DropNumberFive" Hidden="true" />
+      <Method Name="DropNumberFour" Hidden="true" />
+      <Method Name="DropNumberNine" Hidden="true" />
+      <Method Name="DropNumberOne" Hidden="true" />
+      <Method Name="DropNumberSeven" Hidden="true" />
+      <Method Name="DropNumberSix" Hidden="true" />
+      <Method Name="DropNumberThree" Hidden="true" />
+      <Method Name="DropNumberTwo" Hidden="true" />
+      <Method Name="DropNumberZero" Hidden="true" />
+      <Method Name="DropPlat1" Hidden="true" />
+      <Method Name="DropPlat2" Hidden="true" />
+      <Field Name="key1" Hidden="true" />
+      <Field Name="key1InitColor" Hidden="true" />
+      <Field Name="key2" Hidden="true" />
+      <Field Name="key2InitColor" Hidden="true" />
+      <Field Name="key3InitColor" Hidden="true" />
+      <Field Name="keyBlack1" Hidden="true" />
+      <Field Name="keyBlack2" Hidden="true" />
+      <Field Name="keyColor" Hidden="true" />
+      <Field Name="keyStartPos1" Hidden="true" />
+      <Field Name="keyStartPos2" Hidden="true" />
+      <Field Name="n0" Hidden="true" />
+      <Field Name="n1" Hidden="true" />
+      <Field Name="n2" Hidden="true" />
+      <Field Name="n3" Hidden="true" />
+      <Field Name="n4" Hidden="true" />
+      <Field Name="n5" Hidden="true" />
+      <Field Name="n6" Hidden="true" />
+      <Field Name="n7" Hidden="true" />
+      <Field Name="n8" Hidden="true" />
+      <Field Name="n9" Hidden="true" />
+      <Field Name="number" Hidden="true" />
+      <Field Name="numberCorrect" Hidden="true" />
+      <Field Name="numbersCorrect" Hidden="true" />
+      <Field Name="platform1" Hidden="true" />
+      <Field Name="platform1InitPos" Hidden="true" />
+      <Field Name="platform2" Hidden="true" />
+      <Field Name="platform2InitPos" Hidden="true" />
+      <Field Name="platFormCorrect" Hidden="true" />
+      <Field Name="platformCorrect1" Hidden="true" />
+      <Field Name="platformCorrect2" Hidden="true" />
+      <Field Name="problemButton" Hidden="true" />
+      <Field Name="processButton" Hidden="true" />
+      <Field Name="textFeedBack1" Hidden="true" />
+      <Field Name="title" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="DragnDrop.Colors" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\DragnDrop.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BQSADKgGQSQZRJBrAgQPpBIEFRgkUoAOmkwqAFgRk8M=</HashCode>
+      <FileName>Assets\Scripts\DragnDrop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheProgram">
+    <Position X="4.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAAAAAAAAAEBAAEAAAAAAAAIgAQAAIAgAAAAA=</HashCode>
+      <FileName>Assets\Scripts\TheProgram.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HeroMovement">
+    <Position X="6.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iAAAgAgAAiAAABAEAAAAAAACAAAQAIAAQAAIAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\HeroMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
